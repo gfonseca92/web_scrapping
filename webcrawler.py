@@ -75,6 +75,7 @@ class WebMotorsScraper(WebScraper):
         self.get_web_page(wm_url)
         for key in filters.keys():
             self.filter_search(filters[key])
+        self.populate_price_list(max_scroll_down=5)
 
     def filter_search(self, filter_type):
         try:
@@ -110,14 +111,12 @@ url = 'https://www.webmotors.com.br/'
 wm = WebMotorsScraper(path, url)
 filters = {'store_type': 'Concessionária', 'fuel_type': 'Gasolina e álcool', 'category': 'Carros 1.0'}
 wm.search_new_vehicle('volkswagen', 'gol', **filters)
-wm.populate_price_list(5)
 vehicles_df = pd.concat([vehicles_df, wm.price_df])
 wm.search_new_vehicle('chevrolet', 'onix', **filters)
-wm.populate_price_list(5)
 vehicles_df = pd.concat([vehicles_df, wm.price_df])
 wm.search_new_vehicle('hyundai', 'hb20', **filters)
-wm.populate_price_list(5)
 vehicles_df = pd.concat([vehicles_df, wm.price_df])
+print(vehicles_df)
 
 
 
