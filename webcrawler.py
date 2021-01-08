@@ -160,5 +160,9 @@ wm.search_new_vehicle('volkswagen', 'gol', **filters)
 vehicles_df = pd.concat([vehicles_df, wm.price_df])
 wm.search_new_vehicle('hyundai', 'hb20', **filters)
 vehicles_df = pd.concat([vehicles_df, wm.price_df])
+wm.search_new_vehicle('fiat', 'cronos', **filters)
+vehicles_df = pd.concat([vehicles_df, wm.price_df])
+
+vehicles_df.to_csv('veiculos_webmotors.csv')
 print(vehicles_df)
 
